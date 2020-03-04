@@ -21,9 +21,9 @@ node{
 		}
 		stage('Docker Build, Push'){
 
-			withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
+			//withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
 			sh "ssh -i /var/lib/jenkins/key.pem ec2-user@localhost \"cd /var/lib/jenkins/workspace/sudo_test;docker build -t ${ImageName}:${imageTag} .;docker push ${ImageName}:${imageTag}\""
-			}
+		//	}
 		}
 		/*stage('Deploy on K8s'){
 			sh "ansible-playbook /var/lib/jenkins/ansible/sayarappdeploy/deploy.yml --user=jenkins --extra-vars ImageName=${ImageName} --extra-vars imageTag=${imageTag} --extravars Namespace=${Namespace}"
