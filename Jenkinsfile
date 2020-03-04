@@ -22,7 +22,7 @@ node{
 		stage('Docker Build, Push'){
 
 			withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
-			sh "ssh -i /var/lib/jenkins/key.pem ec2-user@localhost \"docker build -t ${ImageName}:${imageTag} .;docker push ${ImageName}\""
+			sh "ssh -i /var/lib/jenkins/key.pem ec2-user@localhost \"cd /var/lib/jenkins/workspace/sudo_test;docker build -t ${ImageName}:${imageTag} .;docker push ${ImageName}\""
 			}
 		}
 		/*stage('Deploy on K8s'){
