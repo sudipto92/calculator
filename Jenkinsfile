@@ -28,6 +28,14 @@ node{
 		/*stage('Deploy on K8s'){
 			sh "ansible-playbook /var/lib/jenkins/ansible/sayarappdeploy/deploy.yml --user=jenkins --extra-vars ImageName=${ImageName} --extra-vars imageTag=${imageTag} --extravars Namespace=${Namespace}"
 		}*/
+		stage('Deploy'){		
+		          sh "docker-compose up -d"
+		}
+		stage("Acceptance test") {
+          		sleep 60
+          		sh "./acceptance_test_docker.sh"
+
+		}
 	}
 	catch (err) {
 		currentBuild.result = 'FAILURE'
