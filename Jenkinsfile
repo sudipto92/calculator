@@ -16,6 +16,9 @@ node{
 		stage('Unit Tests'){
 			sh "./gradlew test"
 		}
+		stage('Package'){		
+		          sh "./gradlew build"
+		}
 		stage('Docker Build, Push'){
 			sh "docker build -t ${ImageName}:${imageTag} ."
 			withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
