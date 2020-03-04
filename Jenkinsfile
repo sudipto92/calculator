@@ -20,10 +20,9 @@ node{
 		          sh "./gradlew build"
 		}
 		stage('Docker Build, Push'){
-			sh "docker build -t ${ImageName}:${imageTag} ."
-			withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
 
-				sh "docker push ${ImageName}"
+			withDockerRegistry([credentialsId: "${Creds}", url:'https://index.docker.io/v1/']) {
+			sh "ssh -i ../../key.pem ec2-user@localhost \"docker build -t ${ImageName}:${imageTag} .\";docker push ${ImageName}"
 			}
 		}
 		/*stage('Deploy on K8s'){
