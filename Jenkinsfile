@@ -29,7 +29,7 @@ node{
 			sh "ansible-playbook /var/lib/jenkins/ansible/sayarappdeploy/deploy.yml --user=jenkins --extra-vars ImageName=${ImageName} --extra-vars imageTag=${imageTag} --extravars Namespace=${Namespace}"
 		}*/
 		stage('Deploy'){		
-		          sh "docker run -it -p 80:8080 --name calculator ${ImageName}:${imageTag};docker run -it --name redis redis:latest
+		          sh "docker run -it -p 80:8080 --name calculator ${ImageName}:${imageTag};docker run -it --name redis redis:latest"
 "
 		}
 		stage("Acceptance test") {
