@@ -30,7 +30,6 @@ node{
 		}*/
 		stage('Deploy'){		
 		          sh "docker run -it -p 80:8080 --name calculator ${ImageName}:${imageTag};docker run -it --name redis redis:latest"
-"
 		}
 		stage("Acceptance test") {
           		sleep 10
