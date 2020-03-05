@@ -1,7 +1,7 @@
 version: "3"
 services:
      calculator:
-          image: calculator_1:latest
+          image: sudiptod/image:latest
           ports:
                - 8080
      redis:
